@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Django
+db.sqlite3
+
+# Environments
+*.local
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+.vscode
+.idea
