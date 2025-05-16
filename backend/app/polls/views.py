@@ -74,9 +74,11 @@ def get_poll_list(request):
 
 @csrf_exempt
 def delete_poll(request):
+    id = request.GET.get("id")
+    if not id:
+        return JsonResponse({"code": 400, "message": "id is required", "data": None})
     if request.method == "DELETE":
         try:
-            id = request.GET.get("id")
             Question.objects.filter(id=id).delete()
             return JsonResponse({"code": 200, "message": "success", "data": None})
         except Exception as e:
