@@ -48,6 +48,8 @@ def create(request):
 @csrf_exempt
 def get_poll(request):
     id = request.GET.get("id")
+    if not id:
+        return JsonResponse({"code": 400, "message": "missing parameter", "data": None})
     if request.method == "GET":
         try:
             question = Question.objects.filter(id=id).values()
