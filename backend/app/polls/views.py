@@ -76,7 +76,7 @@ def get_poll_list(request):
 def delete_poll(request):
     id = request.GET.get("id")
     if not id:
-        return JsonResponse({"code": 400, "message": "id is required", "data": None})
+        return JsonResponse({"code": 400, "message": "missing parameter", "data": None})
     if request.method == "DELETE":
         try:
             Question.objects.filter(id=id).delete()
