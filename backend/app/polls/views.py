@@ -8,12 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
-    if request.method == "GET":
-        questions = Question.objects.all().values()
-        return JsonResponse(
-            {"code": 200, "message": "success", "data": list(questions)}
-        )
-    return HttpResponse("Hello, world. You're at the polls index.")
+    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    output = "，".join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
 
 
 def detail(request, question_id):
