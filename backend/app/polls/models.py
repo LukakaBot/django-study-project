@@ -14,8 +14,8 @@ class Question(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
     question_text = models.CharField(max_length=200)
-    updated_at = models.DateTimeField(auto_now=True)
     pub_date = models.DateTimeField("date published")
+    updated_date = models.DateTimeField(auto_now=True)
 
 
 class Choice(models.Model):
