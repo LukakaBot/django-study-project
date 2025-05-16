@@ -88,10 +88,11 @@ def delete_poll(request):
 
 @csrf_exempt
 def update_poll(request):
+    form_data = json.loads(request.body.decode("utf-8"))
+    if not form_data.get("id") or not form_data.get("question_text"):
+        return JsonResponse({"code": 400, "message": "missing parameter", "data": None})
     if request.method == "PUT":
         try:
-            form_data = json.loads(request.body.decode("utf-8"))
-            print(form_data)
             Question.objects.filter(id=form_data["id"]).update(
                 question_text=form_data["question_text"],
                 updated_date=timezone.now(),
